@@ -1,20 +1,18 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: blue-green
+  name: root-apps
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/argoproj/argocd-example-apps.git
+    repoURL: https://github.com/mclaireh/argocd-apps-config.git  # YOUR repo URL here!
     targetRevision: HEAD
-    path: blue-green
+    path: apps  # Points to the folder with child YAMLs
   destination:
     server: https://kubernetes.default.svc
-    namespace: blue-green
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
