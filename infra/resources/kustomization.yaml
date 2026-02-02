@@ -5,9 +5,3 @@ namespace: argocd
 resources:
   - argocd-lb-service.yaml
   - https://raw.githubusercontent.com/argoproj/argo-cd/v3.2.6/manifests/install.yaml
-
-patches:
-  - path: argocd-cm-github-sso.yaml
-    target:
-      kind: ConfigMap
-      name: argocd-cm
