@@ -1,0 +1,37 @@
+# Grafana + Prometheus + exporters for monitoring Gatekeeper and apps.
+# Grafana is preconfigured with Prometheus as default data source.
+# To view Gatekeeper metrics: in Grafana, add dashboard ID 15763 (Kubernetes OPA Gatekeeper).
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: "55.5.0"
+    helm:
+      releaseName: monitoring
+      valuesObject:
+        # Grafana: enable; set adminPassword via values or secret in production
+        grafana:
+          enabled: true
+          adminPassword: "changeme"
+          service:
+            type: ClusterIP
+        # Prometheus: scrape Gatekeeper metrics (Gatekeeper exposes on :9090 by default)
+        prometheus:
+          prometheusSpec:
+            serviceMonitorSelectorNilUsesHelmValues: false
+            podMonitorSelectorNilUsesHelmValues: false
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

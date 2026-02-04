@@ -6,6 +6,10 @@ All notable changes to this project are documented in this file. Entries are gro
 
 ## 2026-02-04
 
+### **Add Grafana and Prometheus for monitoring**  
+**Branch:** `feature/add-grafana`  
+Adds Argo CD Application (`infra/grafana.yaml`) that deploys the kube-prometheus-stack (Grafana, Prometheus, and exporters) into `monitoring` namespace. Use Grafana to monitor Gatekeeper (add dashboard ID 15763) and apps; Prometheus is the default data source.
+
 ### **Add Gatekeeper via Helm**  
 **Branch:** `feature/gatekeeper`  
 Adds Argo CD Application (`infra/gatekeeper.yaml`) that deploys OPA Gatekeeper from the official Helm chart (v3.21.0) into `gatekeeper-system` with auto-sync, prune, and self-heal.
