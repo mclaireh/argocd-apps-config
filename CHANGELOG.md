@@ -10,6 +10,10 @@ All notable changes to this project are documented in this file. Entries are gro
 **Branch:** `feature/add-changlog`  
 Adds this changelog at the repo root, populated with entries for all existing PRs (branch name and summary per PR), grouped by date.
 
+### **Update repo URLs after transfer to new GitHub account**  
+**Branch:** `feature/update-repo-urls-after-transfer`  
+Updates all in-repo references to this repository to the new GitHub location after transferring the repo from one account to another. `bootstrap/root-app.yaml` and `infra/argocd-app.yaml` now point at the new repo URL so Argo CD syncs from the correct source.
+
 ### [#20](https://github.com/shields-farm/argocd-apps-config/pull/20) — **Update README.md**  
 **Branch:** `clrhdg-patch-1`  
 Fixed a single typo in the numbering on README.md.
