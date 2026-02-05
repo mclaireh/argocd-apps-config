@@ -21,9 +21,8 @@ spec:
   parameters:
     message: "All resources must have the required labels"
     labels:
-      - key: "owner"
-        allowedRegex: "^[a-zA-Z0-9-_]+$"
-      - key: "environment"
-        allowedRegex: "^(dev|staging|prod)$"
-      - key: "app"
-        allowedRegex: "^[a-zA-Z0-9-_]+$"
+      - key: "app.kubernetes.io/name"
+        allowedRegex: "^[a-z0-9-]+$"
+      - key: "app.kubernetes.io/version"
+        allowedRegex: "^[a-zA-Z0-9.-]+$"
+  
