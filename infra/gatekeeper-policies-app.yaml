@@ -18,3 +18,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=false  # gatekeeper-system should already exist
+      - ServerSideApply=true
